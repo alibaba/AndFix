@@ -1,5 +1,6 @@
 # AndFix
 
+[![Download](https://api.bintray.com/packages/supern/maven/andfix/images/download.svg) ](https://bintray.com/supern/maven/andfix/_latestVersion)
 [![Build Status](https://travis-ci.org/alibaba/AndFix.svg)](https://travis-ci.org/alibaba/AndFix)
 [![Software License](https://rawgit.com/alibaba/AndFix/master/images/license.svg)](LICENSE)
 
