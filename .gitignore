@@ -25,3 +25,16 @@ proguard/
 
 # Log Files
 *.log
+
+.DS_Store
+.classpath
+.project
+/.settings
+/bin
+/build
+/gen
+/obj
+project.properties
+/assets
+/res
+/dist

@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.13.0'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+	compileSdkVersion 16
+	buildToolsVersion "22.0.0"
+
+	sourceSets {
+		main {
+			manifest {
+				srcFile 'AndroidManifest.xml'
+			}
+			java {
+				srcDir 'src'
+			}
+			res {
+				srcDir 'res'
+			}
+			assets {
+				srcDir 'assets'
+			}
+			resources {
+				srcDir 'src'
+			}
+			aidl {
+				srcDir 'src'
+			}
+			jniLibs{
+				srcDirs 'libs'
+			}
+		}
+	}
+}
+
+android.libraryVariants.all { variant -> 
+   task("generate${variant.name.capitalize()}Javadoc", type: Javadoc) {
+     title = 'AndFix API'
+     // description = ''
+     source = variant.javaCompile.source 
+     classpath = files(variant.javaCompile.classpath.files, project.android.getBootClasspath()) 
+     options { 
+       links "http://docs.oracle.com/javase/7/docs/api/" 
+       linksOffline "http://d.android.com/reference","${android.sdkDirectory}/docs/reference" 
+     } 
+     exclude '**/BuildConfig.java' 
+     exclude '**/R.java' 
+     include 'com/alipay/euler/andfix/patch/PatchManager.java'
+   } 
+ }
