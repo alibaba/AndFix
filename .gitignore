@@ -35,6 +35,7 @@ proguard/
 /gen
 /obj
 project.properties
+local.properties
 /assets
 /res
 /dist
