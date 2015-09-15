@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.org/alibaba/AndFix.svg)](https://travis-ci.org/alibaba/AndFix)
 [![Software License](https://rawgit.com/alibaba/AndFix/master/images/license.svg)](LICENSE)
 
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alibaba/AndFix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 AndFix is a library that offer hot-fix for Android App. It could help Android developer to fix App bugs online. Andfix is an acronym for "**And**roid hot-**fix**".
 
 AndFix supports Android 2.3 to 6.0, arm and x86 architecture, dalvik runtime and art runtime.
