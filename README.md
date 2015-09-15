@@ -1,5 +1,7 @@
 # AndFix
 
+[![Join the chat at https://gitter.im/alibaba/AndFix](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/alibaba/AndFix?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Download](https://api.bintray.com/packages/supern/maven/andfix/images/download.svg) ](https://bintray.com/supern/maven/andfix/_latestVersion)
 [![Build Status](https://travis-ci.org/alibaba/AndFix.svg)](https://travis-ci.org/alibaba/AndFix)
 [![Software License](https://rawgit.com/alibaba/AndFix/master/images/license.svg)](LICENSE)
