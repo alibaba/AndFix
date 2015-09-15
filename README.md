@@ -129,7 +129,7 @@ usage: apkpatch -m <apatch_path...> -k <keystore> -p <***> -a <alias> -e <***>
 
 ## API Documentation
 
-The libraries javadoc can be found [here](https://github.com/alibaba/AndFix/raw/master/docs/com/alipay/euler/andfix/patch/PatchManager.html)
+The libraries javadoc can be found [here](https://rawgit.com/alibaba/AndFix/master/docs/index.html)
 
 ## Contact
 
