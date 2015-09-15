@@ -1,7 +1,7 @@
 # AndFix
 
-[![Build Status](http://gitlab.alibaba-inc.com/euler/CloudFix/raw/master/images/build.svg)]()
-[![Software License](http://gitlab.alibaba-inc.com/euler/CloudFix/raw/master/images/license.svg)](LICENSE)
+[![Build Status](https://github.com/alibaba/AndFix/raw/master/images/build.svg)]()
+[![Software License](https://github.com/alibaba/AndFix/raw/master/images/license.svg)](LICENSE)
 
 AndFix is a library that offer hot-fix for Android App. It could help Android developer to fix App bugs online. Andfix is an acronym for "**And**roid hot-**fix**".
 
@@ -89,7 +89,7 @@ The patch make tool is apkpatch.
 
 ### How to get?
 
-Apkpatch can be found [here](http://gitlab.alibaba-inc.com/euler/CloudFix/blob/master/tools/apkpatch.zip)
+Apkpatch can be found [here](https://github.com/alibaba/AndFix/raw/master/tools/apkpatch.zip)
 
 ### How to use?
 
@@ -132,7 +132,7 @@ usage: apkpatch -m <apatch_path...> -k <keystore> -p <***> -a <alias> -e <***>
 
 ## API Documentation
 
-The libraries javadoc can be found [here](http://gitlab.alibaba-inc.com/euler/CloudFix/raw/master/docs/com/alipay/euler/andfix/patch/PatchManager.html)
+The libraries javadoc can be found [here](https://github.com/alibaba/AndFix/raw/master/docs/com/alipay/euler/andfix/patch/PatchManager.html)
 
 ## Contact
 
