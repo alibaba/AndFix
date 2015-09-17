@@ -54,7 +54,7 @@ void replace_5_0(JNIEnv* env, jobject src, jobject dest) {
 			smeth->declaring_class_->class_loader_; //for plugin classloader
 	dmeth->declaring_class_->clinit_thread_id_ =
 			smeth->declaring_class_->clinit_thread_id_;
-	dmeth->declaring_class_->status_ = smeth->declaring_class_->status_;
+	dmeth->declaring_class_->status_ = smeth->declaring_class_->status_-1;
 
 	smeth->declaring_class_ = dmeth->declaring_class_;
 	smeth->access_flags_ = dmeth->access_flags_;

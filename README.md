@@ -33,7 +33,7 @@ bug fix process:
 	<dependency>
   		<groupId>com.alipay.euler</groupId>
   		<artifactId>andfix</artifactId>
-  		<version>0.3.0</version>
+  		<version>0.3.1</version>
   		<type>aar</type>
 	</dependency>
 	```
@@ -41,7 +41,7 @@ or gradle dependency:
 
 	```
 	dependencies {
-   		compile 'com.alipay.euler:andfix:0.3.0@aar'
+   		compile 'com.alipay.euler:andfix:0.3.1@aar'
 	}
 	```
 
@@ -136,6 +136,11 @@ usage: apkpatch -m <apatch_path...> -k <keystore> -p <***> -a <alias> -e <***>
 ## API Documentation
 
 The libraries javadoc can be found [here](https://rawgit.com/alibaba/AndFix/master/docs/index.html)
+
+## Security
+
+-  verify the signature of patch file
+-  verify the fingerprint of optimize file
 
 ## Contact
 

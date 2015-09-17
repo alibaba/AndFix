@@ -54,7 +54,7 @@ void replace_5_1(JNIEnv* env, jobject src, jobject dest) {
 			smeth->declaring_class_->class_loader_; //for plugin classloader
 	dmeth->declaring_class_->clinit_thread_id_ =
 			smeth->declaring_class_->clinit_thread_id_;
-	dmeth->declaring_class_->status_ = smeth->declaring_class_->status_;
+	dmeth->declaring_class_->status_ = smeth->declaring_class_->status_-1;
 
 	smeth->declaring_class_ = dmeth->declaring_class_;
 	smeth->dex_cache_resolved_types_ = dmeth->dex_cache_resolved_types_;
@@ -72,7 +72,7 @@ void replace_5_1(JNIEnv* env, jobject src, jobject dest) {
 	smeth->ptr_sized_fields_.entry_point_from_quick_compiled_code_ =
 			dmeth->ptr_sized_fields_.entry_point_from_quick_compiled_code_;
 
-	LOGD("replace_m: %d , %d",
+	LOGD("replace_5_1: %d , %d",
 			smeth->ptr_sized_fields_.entry_point_from_quick_compiled_code_,
 			dmeth->ptr_sized_fields_.entry_point_from_quick_compiled_code_);
 
@@ -82,5 +82,5 @@ void setFieldFlag_5_1(JNIEnv* env, jobject field) {
 	art::mirror::ArtField* artField =
 			(art::mirror::ArtField*) env->FromReflectedField(field);
 	artField->access_flags_ = artField->access_flags_ & (~0x0002) | 0x0001;
-	LOGD("setFieldFlag_m: %d ", artField->access_flags_);
+	LOGD("setFieldFlag_5_1: %d ", artField->access_flags_);
 }
