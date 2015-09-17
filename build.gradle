@@ -14,7 +14,7 @@ apply plugin: 'com.android.library'
 
 android {
 	compileSdkVersion 19
-	buildToolsVersion "22.0.0"
+	buildToolsVersion "22.0.1"
 
 	sourceSets {
 		main {
