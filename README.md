@@ -113,7 +113,7 @@ usage: apkpatch -f <new> -t <old> -o <output> -k <keystore> -p <***> -a <alias> 
 * merge .apatch files:
 
 ```
-usage: apkpatch -m <apatch_path...> -k <keystore> -p <***> -a <alias> -e <***>
+usage: apkpatch -m <apatch_path...> -o <output> -k <keystore> -p <***> -a <alias> -e <***>
  -a,--alias <alias>     alias.
  -e,--epassword <***>   entry password.
  -k,--keystore <loc>    keystore path.
