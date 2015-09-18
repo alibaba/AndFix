@@ -152,7 +152,8 @@ public class PatchManager {
 		File src = new File(path);
 		File dest = new File(mPatchDir, src.getName());
 		if (dest.exists()) {
-			mAndFixManager.removeOptFile(dest);
+			Log.d(TAG, "patch [" + path + "] has be loaded.");
+			return;
 		}
 		FileUtil.copyFile(src, dest);// copy to patch's directory
 		Patch patch = addPatch(dest);
@@ -206,8 +207,8 @@ public class PatchManager {
 			patchNames = patch.getPatchNames();
 			for (String patchName : patchNames) {
 				classes = patch.getClasses(patchName);
-				mAndFixManager.fix(patch.getFile(),
-						mContext.getClassLoader(), classes);
+				mAndFixManager.fix(patch.getFile(), mContext.getClassLoader(),
+						classes);
 			}
 		}
 	}
