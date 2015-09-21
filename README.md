@@ -72,11 +72,11 @@ To ensure that these classes can be found after running an obfuscation and stati
 
 * native method
 
-	com.euler.cloudfix.CloudFix
+	com.alipay.euler.andfix.AndFix
 	
 * annotation
 
-	com.euler.cloudfix.annotation.MethodReplace
+	com.alipay.euler.andfix.annotation.MethodReplace
 
 	
 	```
