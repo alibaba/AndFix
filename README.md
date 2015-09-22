@@ -85,7 +85,7 @@ To ensure that these classes can be found after running an obfuscation and stati
     	native <methods>;
 	}
 	```
-
+	
 ## Developer Tool
 
 The patch make tool is apkpatch.
@@ -100,8 +100,8 @@ Apkpatch can be found [here](https://github.com/alibaba/AndFix/raw/master/tools/
 
 ```
 usage: apkpatch -f <new> -t <old> -o <output> -k <keystore> -p <***> -a <alias> -e <***>
- -a,--alias <alias>     alias.
- -e,--epassword <***>   entry password.
+ -a,--alias <alias>     keystore entry alias.
+ -e,--epassword <***>   keystore entry password.
  -f,--from <loc>        new Apk file path.
  -k,--keystore <loc>    keystore path.
  -n,--name <name>       patch name.
@@ -114,8 +114,8 @@ usage: apkpatch -f <new> -t <old> -o <output> -k <keystore> -p <***> -a <alias> 
 
 ```
 usage: apkpatch -m <apatch_path...> -o <output> -k <keystore> -p <***> -a <alias> -e <***>
- -a,--alias <alias>     alias.
- -e,--epassword <***>   entry password.
+ -a,--alias <alias>     keystore entry alias.
+ -e,--epassword <***>   keystore entry password.
  -k,--keystore <loc>    keystore path.
  -m,--merge <loc...>    path of .apatch files.
  -n,--name <name>       patch name.
@@ -123,6 +123,20 @@ usage: apkpatch -m <apatch_path...> -o <output> -k <keystore> -p <***> -a <alias
  -p,--kpassword <***>   keystore password.
 ```
 
+### Code Protection
+
+In order to achieve Code Protection,you might have used some techniques such as below:
+
+* ProGuard
+	
+	you must save the mapping.txt, so your new version's build can use it with "-applymapping".
+	
+	<http://proguard.sourceforge.net/manual/usage.html#applymapping>
+	
+* Self Modifying Code, such as Bangcle 
+
+	to generate patch file use raw apk best.
+	
 ## Running sample
 
 1. import samples/AndFixDemo to your IDE, set AndFixDemo depend on AndFix(library project or aar).
