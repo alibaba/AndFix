@@ -92,7 +92,7 @@ The patch make tool is apkpatch.
 
 ### How to get?
 
-Apkpatch can be found [here](https://github.com/alibaba/AndFix/raw/master/tools/apkpatch.zip)
+Apkpatch can be found [here](https://github.com/alibaba/AndFix/raw/master/tools/apkpatch-1.0.3.zip)
 
 ### How to use?
 
