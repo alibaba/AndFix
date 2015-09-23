@@ -18,6 +18,7 @@
 package com.alipay.euler.andfix.patch;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -151,6 +152,9 @@ public class PatchManager {
 	public void addPatch(String path) throws IOException {
 		File src = new File(path);
 		File dest = new File(mPatchDir, src.getName());
+		if(!src.exists()){
+			throw new FileNotFoundException(path);
+		}
 		if (dest.exists()) {
 			Log.d(TAG, "patch [" + path + "] has be loaded.");
 			return;
