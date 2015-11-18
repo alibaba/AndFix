@@ -78,28 +78,6 @@ For your gradle dependency,
 	```
 	When a new patch file has been downloaded, it will become effective immediately by `addPatch`.
 
-### ProGuard
-
-It is necessary to keep classes as follow,
-
-* Native method
-
-	com.alipay.euler.andfix.AndFix
-
-* Annotation
-
-	com.alipay.euler.andfix.annotation.MethodReplace
-
-To ensure that these classes can be found after running an obfuscation and static analysis tool like ProGuard, add the configuration below to your ProGuard configuration file.
-
-
-	```
-	-keep class * extends java.lang.annotation.Annotation
-	-keepclasseswithmembernames class * {
-    	native <methods>;
-	}
-	```
-
 ## Developer Tool
 
 AndFix provides a patch-making tool called **apkpatch**.
@@ -154,15 +132,31 @@ usage: apkpatch -m <apatch_path...> -o <output> -k <keystore> -p <***> -a <alias
 
 ## Notice
 
-### Code Protection
+### ProGuard
 
-In order to achieve Code Protection, you might have used some techniques such as below,
+If you enable ProGuard, you must save the mapping.txt, so your new version's build can use it with ["-applymapping"](http://proguard.sourceforge.net/manual/usage.html#applymapping).
 
-#### ProGuard
+And it is necessary to keep classes as follow,
 
-If you enable ProGuard, you must save the mapping.txt, so your new version's build can use it with ["-applymapping"](http://proguard.sourceforge.net/manual/usage.html#applymapping)
+* Native method
 
-#### Self-Modifying Code
+	com.alipay.euler.andfix.AndFix
+
+* Annotation
+
+	com.alipay.euler.andfix.annotation.MethodReplace
+
+To ensure that these classes can be found after running an obfuscation and static analysis tool like ProGuard, add the configuration below to your ProGuard configuration file.
+
+
+	```
+	-keep class * extends java.lang.annotation.Annotation
+	-keepclasseswithmembernames class * {
+    	native <methods>;
+	}
+	```
+
+### Self-Modifying Code
 
 If you use it, such as *Bangcle*. To generate patch file, you'd better to use raw apk.
 
