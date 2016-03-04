@@ -171,9 +171,7 @@ public class PatchManager {
 	 */
 	public void removeAllPatch() {
 		cleanPatch();
-		SharedPreferences sp = mContext.getSharedPreferences(SP_NAME,
-				Context.MODE_PRIVATE);
-		sp.edit().clear().commit();
+		mPatchs.clear();
 	}
 
 	/**
@@ -232,6 +230,10 @@ public class PatchManager {
 				cl = mContext.getClassLoader();
 			} else {
 				cl = mLoaders.get(patchName);
+			}
+			if (cl == null) {
+				cl = mContext.getClassLoader();
+				mLoaders.put("*", cl);// wildcard
 			}
 			if (cl != null) {
 				classes = patch.getClasses(patchName);
