@@ -22,7 +22,7 @@ The implementation principle of AndFix is method body's replacing,
 
 ### Method replacing
 
-AndFix judges the methods should be replaced by java custom annotation and replaces it by hooking it. AndFix has a native method `art_replaceMethod` in ART or `dalvik_replaceMethod` in X86 architecture. Implementations are different. For Dalvik, it will change the target method type to 'native' and link the method implementation to AndFix's own native, generic method called `dalvik_dispatcher`, this method then takes care of invoking callbacks that have been registered, as we say 'hooked'. For ART, we just change the `ArtMethod` properties of itself to replace it.
+AndFix judges the methods should be replaced by java custom annotation and replaces it by hooking it. AndFix has a native method `art_replaceMethod` in ART or `dalvik_replaceMethod` in Dalvik. 
 
 For more details, [here](https://github.com/alibaba/AndFix/tree/master/jni).
 
@@ -42,7 +42,7 @@ For your maven dependency,
 	<dependency>
   		<groupId>com.alipay.euler</groupId>
   		<artifactId>andfix</artifactId>
-  		<version>0.3.1</version>
+  		<version>0.4.0</version>
   		<type>aar</type>
 	</dependency>
 	```
@@ -50,7 +50,7 @@ For your gradle dependency,
 
 	```
 	dependencies {
-   		compile 'com.alipay.euler:andfix:0.3.1@aar'
+   		compile 'com.alipay.euler:andfix:0.4.0@aar'
 	}
 	```
 
