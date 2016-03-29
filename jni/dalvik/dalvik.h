@@ -99,7 +99,6 @@ struct Field {
 
 struct Method;
 struct ClassObject;
-struct ArrayObject;
 
 typedef struct Object {
 	/* ptr to class object */
@@ -286,90 +285,10 @@ typedef struct Method {
 
 } Method;
 
-/*
- * Array objects have these additional fields.
- *
- * We don't currently store the size of each element.  Usually it's implied
- * by the instruction.  If necessary, the width can be derived from
- * the first char of obj->clazz->name.
- */
-typedef struct ArrayObject {
-	Object obj; /* MUST be first item */
-
-	/* number of elements; immutable after init */
-	u4 length;
-
-	/*
-	 * Array contents; actual size is (length * sizeof(type)).  This is
-	 * declared as u8 so that the compiler inserts any necessary padding
-	 * (e.g. for EABI); the actual allocation may be smaller than 8 bytes.
-	 */
-	u8 contents[1];
-} ArrayObject;
-
-typedef void (*DalvikNativeFunc)(const u4* args, jvalue* pResult);
-
-typedef struct DalvikNativeMethod_t {
-	const char* name;
-	const char* signature;
-	DalvikNativeFunc fnPtr;
-} DalvikNativeMethod;
-
-/* flags for dvmMalloc */
-enum {
-	ALLOC_DEFAULT = 0x00, ALLOC_DONT_TRACK = 0x01, /* don't add to internal tracking list */
-	ALLOC_NON_MOVING = 0x02,
-};
-
-static void dalvik_dispatcher(const u4* args, jvalue* pResult,
-		const Method* method, void* self);
-static void* dvm_dlsym(void *hand, const char *name);
-static ArrayObject* boxMethodArgs(const Method* method, const u4* args);
-static void throwNPE(JNIEnv* env, const char* msg);
-static s8 dvmGetArgLong(const u4* args, int elem);
-static bool dvmIsStaticMethod(const Method* method);
-static bool dvmIsPrimitiveClass(const ClassObject* clazz);
-
-//typedef void* (*dvmIsStaticMethod_func)(void*);
-
-typedef int (*dvmComputeMethodArgsSize_func)(void*);
-typedef void (*dvmCallMethod_func)(void*, const Method*, void*, void*, void*,
-		...);
-
-typedef size_t (*dexProtoGetParameterCount_func)(const DexProto *);
-typedef ArrayObject* (*dvmAllocArrayByClass_func)(void*, size_t, int);
-typedef void* (*dvmBoxPrimitive_func)(jvalue, void*);
-typedef void* (*dvmFindPrimitiveClass_func)(const char);
-typedef void (*dvmReleaseTrackedAlloc_func)(void*, void*);
-typedef ClassObject* (*dvmFindArrayClass_func)(const char*, void*);
-//typedef jlong (*dvmGetArgLong_func)(const u4*,int);
-typedef int (*dvmCheckException_func)(void*);
-typedef Object* (*dvmGetException_func)(void*);
-typedef Object* (*dvmCreateReflectMethodObject_func)(const Method*);
-
-typedef ClassObject* (*dvmGetBoxedReturnType_func)(const Method*);
-//typedef int (*dvmIsPrimitiveClass_func)(ClassObject*);
-typedef int (*dvmUnboxPrimitive_func)(void*, ClassObject*, void*);
 typedef Object* (*dvmDecodeIndirectRef_func)(void* self, jobject jobj);
 typedef void* (*dvmThreadSelf_func)();
 
-dvmComputeMethodArgsSize_func dvmComputeMethodArgsSize_fnPtr;
-//dvmIsStaticMethod_func dvmIsStaticMethod_fnPtr;
-dvmCallMethod_func dvmCallMethod_fnPtr;
-
-dexProtoGetParameterCount_func dexProtoGetParameterCount_fnPtr;
-dvmAllocArrayByClass_func dvmAllocArrayByClass_fnPtr;
-dvmBoxPrimitive_func dvmBoxPrimitive_fnPtr;
-dvmFindPrimitiveClass_func dvmFindPrimitiveClass_fnPtr;
-dvmReleaseTrackedAlloc_func dvmReleaseTrackedAlloc_fnPtr;
-dvmFindArrayClass_func dvmFindArrayClass_fnPtr;
-//dvmGetArgLong_func dvmGetArgLong_fnPtr;
-dvmCheckException_func dvmCheckException_fnPtr;
-dvmGetException_func dvmGetException_fnPtr;
-dvmCreateReflectMethodObject_func dvmCreateReflectMethodObject_fnPtr;
-
-dvmGetBoxedReturnType_func dvmGetBoxedReturnType_fnPtr;
-//dvmIsPrimitiveClass_func dvmIsPrimitiveClass_fnPtr;
-dvmUnboxPrimitive_func dvmUnboxPrimitive_fnPtr;
 dvmDecodeIndirectRef_func dvmDecodeIndirectRef_fnPtr;
 dvmThreadSelf_func dvmThreadSelf_fnPtr;
+
+jmethodID jClassMethod;

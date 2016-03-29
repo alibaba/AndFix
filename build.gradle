@@ -56,7 +56,7 @@ ext {
     siteUrl = 'https://github.com/alibaba/AndFix'
     gitUrl = 'https://github.com/alibaba/AndFix.git'
  
-    libraryVersion = '0.3.1'
+    libraryVersion = '0.4.0'
  
     developerId = 'supern'
     developerName = 'Supern Lee'
