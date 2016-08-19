@@ -57,27 +57,22 @@ void replace_5_0(JNIEnv* env, jobject src, jobject dest) {
 	dmeth->declaring_class_->status_ = smeth->declaring_class_->status_-1;
 
 	smeth->declaring_class_ = dmeth->declaring_class_;
-	smeth->access_flags_ = dmeth->access_flags_;
-	smeth->frame_size_in_bytes_ = dmeth->frame_size_in_bytes_;
-	smeth->dex_cache_initialized_static_storage_ =
-			dmeth->dex_cache_initialized_static_storage_;
-	smeth->dex_cache_resolved_types_ = dmeth->dex_cache_resolved_types_;
-	smeth->dex_cache_resolved_methods_ = dmeth->dex_cache_resolved_methods_;
-	smeth->vmap_table_ = dmeth->vmap_table_;
-	smeth->core_spill_mask_ = dmeth->core_spill_mask_;
-	smeth->fp_spill_mask_ = dmeth->fp_spill_mask_;
-	smeth->mapping_table_ = dmeth->mapping_table_;
-	smeth->code_item_offset_ = dmeth->code_item_offset_;
-	smeth->entry_point_from_compiled_code_ =
-			dmeth->entry_point_from_compiled_code_;
+    smeth->access_flags_ = dmeth->access_flags_;
+    smeth->dex_cache_resolved_types_ = dmeth->dex_cache_resolved_types_;
+    smeth->dex_cache_resolved_methods_ = dmeth->dex_cache_resolved_methods_;
+    smeth->dex_cache_strings_ = dmeth->dex_cache_strings_;
+    smeth->dex_code_item_offset_ = dmeth->dex_code_item_offset_;
+    smeth->dex_method_index_ = dmeth->dex_method_index_;
+    smeth->gc_map_ = dmeth->gc_map_;
+    smeth->entry_point_from_jni_ = dmeth->entry_point_from_jni_;
+    smeth->entry_point_from_quick_compiled_code_ = dmeth->entry_point_from_quick_compiled_code_;
+    
+    smeth->entry_point_from_interpreter_ = dmeth->entry_point_from_interpreter_;
+    
+    smeth->method_index_ = dmeth->method_index_;
 
-	smeth->entry_point_from_interpreter_ = dmeth->entry_point_from_interpreter_;
-	smeth->native_method_ = dmeth->native_method_;
-	smeth->method_index_ = dmeth->method_index_;
-	smeth->method_dex_index_ = dmeth->method_dex_index_;
-
-	LOGD("replace_5_0: %d , %d", smeth->entry_point_from_compiled_code_,
-			dmeth->entry_point_from_compiled_code_);
+	LOGD("replace_5_0: %d , %d", smeth->entry_point_from_quick_compiled_code_,
+			dmeth->entry_point_from_quick_compiled_code_);
 
 }
 
