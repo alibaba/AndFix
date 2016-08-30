@@ -45,6 +45,8 @@ typedef signed int s4;
 typedef signed long long s8;
 #endif
 
+void replace_4_4(JNIEnv* env, jobject src, jobject dest);
+void setFieldFlag_4_4(JNIEnv* env, jobject field);
 void replace_5_0(JNIEnv* env, jobject src, jobject dest);
 void setFieldFlag_5_0(JNIEnv* env, jobject field);
 void replace_5_1(JNIEnv* env, jobject src, jobject dest);

@@ -56,9 +56,11 @@ extern void __attribute__ ((visibility ("hidden"))) art_replaceMethod(
 		replace_6_0(env, src, dest);
 	} else if (apilevel > 21) {
 		replace_5_1(env, src, dest);
-	} else {
+	} else if (apilevel > 19) {
 		replace_5_0(env, src, dest);
-	}
+    }else{
+        replace_4_4(env, src, dest);
+    }
 }
 
 extern void __attribute__ ((visibility ("hidden"))) art_setFieldFlag(
@@ -67,8 +69,10 @@ extern void __attribute__ ((visibility ("hidden"))) art_setFieldFlag(
 		setFieldFlag_6_0(env, field);
 	} else if (apilevel > 21) {
 		setFieldFlag_5_1(env, field);
-	} else {
+	} else  if (apilevel > 19) {
 		setFieldFlag_5_0(env, field);
-	}
+    }else{
+        setFieldFlag_4_4(env, field);
+    }
 }
 

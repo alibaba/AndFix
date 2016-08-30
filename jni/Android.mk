@@ -5,6 +5,7 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= andfix.cpp\
 					art/art_method_replace.cpp \
+					art/art_method_replace_4_4.cpp \
 					art/art_method_replace_5_0.cpp \
 					art/art_method_replace_5_1.cpp \
 					art/art_method_replace_6_0.cpp \
