@@ -42,7 +42,7 @@ For your maven dependency,
 <dependency>
   	<groupId>com.alipay.euler</groupId>
   	<artifactId>andfix</artifactId>
-  	<version>0.4.0</version>
+  	<version>0.4.1</version>
   	<type>aar</type>
 </dependency>
 ```
@@ -50,7 +50,7 @@ For your gradle dependency,
 
 ```groovy
 dependencies {
-	compile 'com.alipay.euler:andfix:0.4.0@aar'
+	compile 'com.alipay.euler:andfix:0.4.1@aar'
 }
 ```
 
