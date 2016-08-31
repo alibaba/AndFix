@@ -52,7 +52,9 @@ extern jboolean __attribute__ ((visibility ("hidden"))) art_setup(JNIEnv* env,
 
 extern void __attribute__ ((visibility ("hidden"))) art_replaceMethod(
 		JNIEnv* env, jobject src, jobject dest) {
-	if (apilevel > 22) {
+    if (apilevel > 23) {
+        replace_7_0(env, src, dest);
+    } else if (apilevel > 22) {
 		replace_6_0(env, src, dest);
 	} else if (apilevel > 21) {
 		replace_5_1(env, src, dest);
@@ -65,7 +67,9 @@ extern void __attribute__ ((visibility ("hidden"))) art_replaceMethod(
 
 extern void __attribute__ ((visibility ("hidden"))) art_setFieldFlag(
 		JNIEnv* env, jobject field) {
-	if (apilevel > 22) {
+    if (apilevel > 23) {
+        setFieldFlag_7_0(env, field);
+    } else if (apilevel > 22) {
 		setFieldFlag_6_0(env, field);
 	} else if (apilevel > 21) {
 		setFieldFlag_5_1(env, field);

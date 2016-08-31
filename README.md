@@ -10,7 +10,7 @@ AndFix is a solution to fix the bugs online instead of redistributing Android Ap
 
 Andfix is an acronym for "**And**roid hot-**fix**".
 
-AndFix supports Android version from 2.3 to 6.0, both ARM and X86 architecture, both Dalvik and ART runtime.
+AndFix supports Android version from 2.3 to 7.0, both ARM and X86 architecture, both Dalvik and ART runtime, both 32bit and 64bit.
 
 The compressed file format of AndFix's patch is **.apatch**. It is dispatched from your own server to client to fix your App's bugs.
 
@@ -42,7 +42,7 @@ For your maven dependency,
 <dependency>
   	<groupId>com.alipay.euler</groupId>
   	<artifactId>andfix</artifactId>
-  	<version>0.4.1</version>
+  	<version>0.5.0</version>
   	<type>aar</type>
 </dependency>
 ```
@@ -50,7 +50,7 @@ For your gradle dependency,
 
 ```groovy
 dependencies {
-	compile 'com.alipay.euler:andfix:0.4.1@aar'
+	compile 'com.alipay.euler:andfix:0.5.0@aar'
 }
 ```
 

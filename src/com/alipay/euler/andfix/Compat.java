@@ -73,10 +73,10 @@ public class Compat {
 		}
 	}
 
-	// from android 2.3 to android 6.0
+	// from android 2.3 to android 7.0
 	private static boolean isSupportSDKVersion() {
 		if (android.os.Build.VERSION.SDK_INT >= 8
-				&& android.os.Build.VERSION.SDK_INT <= 23) {
+				&& android.os.Build.VERSION.SDK_INT <= 24) {
 			return true;
 		}
 		return false;
