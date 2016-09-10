@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Andfix by alibaba</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Andfix</h1>
+      <h2 class="project-tagline">AndFix is a library that offer hot-fix for Android App.</h2>
+      <a href="https://github.com/alibaba/AndFix" class="btn">View on GitHub</a>
+      <a href="https://github.com/alibaba/AndFix/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alibaba/AndFix/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="andfix" class="anchor" href="#andfix" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AndFix</h1>
+
+<p><a href="https://bintray.com/supern/maven/andfix/_latestVersion"><img src="https://api.bintray.com/packages/supern/maven/andfix/images/download.svg" alt="Download"> </a>
+<a href="https://travis-ci.org/alibaba/AndFix"><img src="https://travis-ci.org/alibaba/AndFix.svg" alt="Build Status"></a>
+<a href="LICENSE"><img src="https://rawgit.com/alibaba/AndFix/master/images/license.svg" alt="Software License"></a></p>
+
+<p><a href="https://gitter.im/alibaba/AndFix?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
+
+<p>AndFix is a solution to fix the bugs online instead of redistributing Android App. It is distributed as <a href="https://sites.google.com/a/android.com/tools/tech-docs/new-build-system/aar-format">Android Library</a>.</p>
+
+<p>Andfix is an acronym for "<strong>And</strong>roid hot-<strong>fix</strong>".</p>
+
+<p>AndFix supports Android version from 2.3 to 7.0, both ARM and X86 architecture, both Dalvik and ART runtime, both 32bit and 64bit.</p>
+
+<p>The compressed file format of AndFix's patch is <strong>.apatch</strong>. It is dispatched from your own server to client to fix your App's bugs.</p>
+
+<h2>
+<a id="principle" class="anchor" href="#principle" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Principle</h2>
+
+<p>The implementation principle of AndFix is method body's replacing,</p>
+
+<p><img src="images/principle.png" alt="image"></p>
+
+<h3>
+<a id="method-replacing" class="anchor" href="#method-replacing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Method replacing</h3>
+
+<p>AndFix judges the methods should be replaced by java custom annotation and replaces it by hooking it. AndFix has a native method <code>art_replaceMethod</code> in ART or <code>dalvik_replaceMethod</code> in Dalvik. </p>
+
+<p>For more details, <a href="https://github.com/alibaba/AndFix/tree/master/jni">here</a>.</p>
+
+<h2>
+<a id="fix-process" class="anchor" href="#fix-process" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fix Process</h2>
+
+<p><img src="images/process.png" alt="image"></p>
+
+<h2>
+<a id="integration" class="anchor" href="#integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Integration</h2>
+
+<h3>
+<a id="how-to-get" class="anchor" href="#how-to-get" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to get?</h3>
+
+<p>Directly add AndFix aar to your project as compile libraries.</p>
+
+<p>For your maven dependency,</p>
+
+<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">dependency</span>&gt;
+    &lt;<span class="pl-ent">groupId</span>&gt;com.alipay.euler&lt;/<span class="pl-ent">groupId</span>&gt;
+    &lt;<span class="pl-ent">artifactId</span>&gt;andfix&lt;/<span class="pl-ent">artifactId</span>&gt;
+    &lt;<span class="pl-ent">version</span>&gt;0.5.0&lt;/<span class="pl-ent">version</span>&gt;
+    &lt;<span class="pl-ent">type</span>&gt;aar&lt;/<span class="pl-ent">type</span>&gt;
+&lt;/<span class="pl-ent">dependency</span>&gt;</pre></div>
+
+<p>For your gradle dependency,</p>
+
+<div class="highlight highlight-source-groovy"><pre>dependencies {
+    compile <span class="pl-s"><span class="pl-pds">'</span>com.alipay.euler:andfix:0.5.0@aar<span class="pl-pds">'</span></span>
+}</pre></div>
+
+<h3>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use?</h3>
+
+<ol>
+<li>Initialize PatchManager,</li>
+</ol>
+
+<div class="highlight highlight-source-java"><pre>patchManager <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-smi">PatchManager</span>(context);
+patchManager<span class="pl-k">.</span>init(appversion);<span class="pl-c">//current version</span></pre></div>
+
+<ol>
+<li>Load patch,</li>
+</ol>
+
+<div class="highlight highlight-source-java"><pre>patchManager<span class="pl-k">.</span>loadPatch();</pre></div>
+
+<p>You should load patch as early as possible, generally, in the initialization phase of your application(such as <code>Application.onCreate()</code>).</p>
+
+<ol>
+<li>Add patch,</li>
+</ol>
+
+<div class="highlight highlight-source-java"><pre>patchManager<span class="pl-k">.</span>addPatch(path);<span class="pl-c">//path of the patch file that was downloaded</span></pre></div>
+
+<p>When a new patch file has been downloaded, it will become effective immediately by <code>addPatch</code>.</p>
+
+<h2>
+<a id="developer-tool" class="anchor" href="#developer-tool" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Developer Tool</h2>
+
+<p>AndFix provides a patch-making tool called <strong>apkpatch</strong>.</p>
+
+<h3>
+<a id="how-to-get-1" class="anchor" href="#how-to-get-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to get?</h3>
+
+<p>The <code>apkpatch</code> tool can be found <a href="https://github.com/alibaba/AndFix/raw/master/tools/apkpatch-1.0.3.zip">here</a>.</p>
+
+<h3>
+<a id="how-to-use-1" class="anchor" href="#how-to-use-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to use?</h3>
+
+<ul>
+<li><p>Prepare two android packages, one is the online package, the other one is the package after you fix bugs by coding.</p></li>
+<li><p>Generate <code>.apatch</code> file by providing the two package,</p></li>
+</ul>
+
+<pre><code>usage: apkpatch -f &lt;new&gt; -t &lt;old&gt; -o &lt;output&gt; -k &lt;keystore&gt; -p &lt;***&gt; -a &lt;alias&gt; -e &lt;***&gt;
+ -a,--alias &lt;alias&gt;     keystore entry alias.
+ -e,--epassword &lt;***&gt;   keystore entry password.
+ -f,--from &lt;loc&gt;        new Apk file path.
+ -k,--keystore &lt;loc&gt;    keystore path.
+ -n,--name &lt;name&gt;       patch name.
+ -o,--out &lt;dir&gt;         output dir.
+ -p,--kpassword &lt;***&gt;   keystore password.
+ -t,--to &lt;loc&gt;          old Apk file path.
+</code></pre>
+
+<p>Now you get the application savior, the patch file. Then you need to dispatch it to your client in some way, push or pull.</p>
+
+<p>Sometimes, your team members may fix each other's bugs, and generate not only one <code>.apatch</code>. For this situation, you can
+merge <code>.apatch</code> files using this tool,</p>
+
+<pre><code>usage: apkpatch -m &lt;apatch_path...&gt; -o &lt;output&gt; -k &lt;keystore&gt; -p &lt;***&gt; -a &lt;alias&gt; -e &lt;***&gt;
+ -a,--alias &lt;alias&gt;     keystore entry alias.
+ -e,--epassword &lt;***&gt;   keystore entry password.
+ -k,--keystore &lt;loc&gt;    keystore path.
+ -m,--merge &lt;loc...&gt;    path of .apatch files.
+ -n,--name &lt;name&gt;       patch name.
+ -o,--out &lt;dir&gt;         output dir.
+ -p,--kpassword &lt;***&gt;   keystore password.
+</code></pre>
+
+<h2>
+<a id="running-sample" class="anchor" href="#running-sample" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running sample</h2>
+
+<ol>
+<li>Import samplesI/AndFixDemo to your IDE, append AndFixDemo dependencies with AndFix(library project or aar).</li>
+<li>Build project, save the package as 1.apk, and then install on device/emulator.</li>
+<li>Modify com.euler.test.A, references com.euler.test.Fix.</li>
+<li>Build project, save the package as 2.apk.</li>
+<li>Use apkpatch tool to make a patch.</li>
+<li>Rename the patch file to out.apatch, and then copy it to sdcard.</li>
+<li>Run 1.apk and view log.</li>
+</ol>
+
+<h2>
+<a id="notice" class="anchor" href="#notice" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notice</h2>
+
+<h3>
+<a id="proguard" class="anchor" href="#proguard" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>ProGuard</h3>
+
+<p>If you enable ProGuard, you must save the mapping.txt, so your new version's build can use it with <a href="http://proguard.sourceforge.net/manual/usage.html#applymapping">"-applymapping"</a>.</p>
+
+<p>And it is necessary to keep classes as follow,</p>
+
+<ul>
+<li>
+<p>Native method</p>
+
+<p>com.alipay.euler.andfix.AndFix</p>
+</li>
+<li>
+<p>Annotation</p>
+
+<p>com.alipay.euler.andfix.annotation.MethodReplace</p>
+</li>
+</ul>
+
+<p>To ensure that these classes can be found after running an obfuscation and static analysis tool like ProGuard, add the configuration below to your ProGuard configuration file.</p>
+
+<pre><code>-keep class * extends java.lang.annotation.Annotation
+-keepclasseswithmembernames class * {
+    native &lt;methods&gt;;
+}
+</code></pre>
+
+<h3>
+<a id="self-modifying-code" class="anchor" href="#self-modifying-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Self-Modifying Code</h3>
+
+<p>If you use it, such as <em>Bangcle</em>. To generate patch file, you'd better to use raw apk.</p>
+
+<h3>
+<a id="security" class="anchor" href="#security" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Security</h3>
+
+<p>The following is important but out of AndFix's range.</p>
+
+<ul>
+<li> verify the signature of patch file</li>
+<li> verify the fingerprint of optimize file</li>
+</ul>
+
+<h2>
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Documentation</h2>
+
+<p>The libraries javadoc can be found <a href="https://rawgit.com/alibaba/AndFix/master/docs/index.html">here</a>.</p>
+
+<h2>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contact</h2>
+
+<p>...</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache License, Version 2.0</a></p>
+
+<p>Copyright (c) 2015, alipay.com</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alibaba/AndFix">Andfix</a> is maintained by <a href="https://github.com/alibaba">alibaba</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
