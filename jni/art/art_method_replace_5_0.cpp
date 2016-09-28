@@ -57,7 +57,7 @@ void replace_5_0(JNIEnv* env, jobject src, jobject dest) {
 	reinterpret_cast<art::mirror::Class*>(dmeth->declaring_class_)->status_ = reinterpret_cast<art::mirror::Class*>(smeth->declaring_class_)->status_-1;
 
 	smeth->declaring_class_ = dmeth->declaring_class_;
-    smeth->access_flags_ = dmeth->access_flags_;
+    smeth->access_flags_ = dmeth->access_flags_ & (~0x0002) | 0x0001;
     smeth->dex_cache_resolved_types_ = dmeth->dex_cache_resolved_types_;
     smeth->dex_cache_resolved_methods_ = dmeth->dex_cache_resolved_methods_;
     smeth->dex_cache_strings_ = dmeth->dex_cache_strings_;

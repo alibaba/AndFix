@@ -58,7 +58,7 @@ void replace_4_4(JNIEnv* env, jobject src, jobject dest) {
 
 	smeth->declaring_class_ = dmeth->declaring_class_;
     smeth->dex_cache_initialized_static_storage_ = dmeth->dex_cache_initialized_static_storage_;
-    smeth->access_flags_ = dmeth->access_flags_;
+    smeth->access_flags_ = dmeth->access_flags_ & (~0x0002) | 0x0001;
     smeth->dex_cache_resolved_types_ = dmeth->dex_cache_resolved_types_;
     smeth->dex_cache_resolved_methods_ = dmeth->dex_cache_resolved_methods_;
     smeth->dex_cache_strings_ = dmeth->dex_cache_strings_;
