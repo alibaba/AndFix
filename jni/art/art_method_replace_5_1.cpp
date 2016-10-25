@@ -55,6 +55,8 @@ void replace_5_1(JNIEnv* env, jobject src, jobject dest) {
 	reinterpret_cast<art::mirror::Class*>(dmeth->declaring_class_)->clinit_thread_id_ =
 			reinterpret_cast<art::mirror::Class*>(smeth->declaring_class_)->clinit_thread_id_;
 	reinterpret_cast<art::mirror::Class*>(dmeth->declaring_class_)->status_ = reinterpret_cast<art::mirror::Class*>(smeth->declaring_class_)->status_-1;
+	//for reflection invoke
+	reinterpret_cast<art::mirror::Class*>(dmeth->declaring_class_)->super_class_ = 0;
 
 	smeth->declaring_class_ = dmeth->declaring_class_;
 	smeth->dex_cache_resolved_types_ = dmeth->dex_cache_resolved_types_;
