@@ -87,7 +87,7 @@ extern void __attribute__ ((visibility ("hidden"))) dalvik_replaceMethod(
 	Method* target = (Method*) env->FromReflectedMethod(dest);
 	LOGD("dalvikMethod: %s", meth->name);
 
-	meth->clazz = target->clazz;
+//	meth->clazz = target->clazz;
 	meth->accessFlags |= ACC_PUBLIC;
 	meth->methodIndex = target->methodIndex;
 	meth->jniArgInfo = target->jniArgInfo;
