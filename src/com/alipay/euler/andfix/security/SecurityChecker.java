@@ -171,12 +171,12 @@ public class SecurityChecker {
 		}
 		MessageDigest digest = null;
 		FileInputStream in = null;
-		byte buffer[] = new byte[8192];
+		byte buffer[] = new byte[1024];
 		int len;
 		try {
 			digest = MessageDigest.getInstance("MD5");
 			in = new FileInputStream(file);
-			while ((len = in.read(buffer)) != -1) {
+			while ((len = in.read(buffer, 0, 1024)) != -1) {
 				digest.update(buffer, 0, len);
 			}
 		} catch (Exception e) {
@@ -190,8 +190,8 @@ public class SecurityChecker {
 				Log.e(TAG, "getFileMD5", e);
 			}
 		}
-		BigInteger bigInt = new BigInteger(digest.digest());
-		return bigInt.toString();
+		BigInteger bigInt = new BigInteger(1, digest.digest());
+		return bigInt.toString(16);
 	}
 
 	// md5 as fingerprint
