@@ -57,6 +57,7 @@ public class Compat {
 	private static boolean isYunOS() {
 		String version = null;
 		String vmName = null;
+		boolean yunosLibExists = false;
 		try {
 			Method m = Class.forName("android.os.SystemProperties").getMethod(
 					"get", String.class);
@@ -65,8 +66,14 @@ public class Compat {
 		} catch (Exception e) {
 			// nothing todo
 		}
+		try {
+			yunosLibExists = new File("/system/lib/libaoc.so").exists()
+					|| new File("/system/lib/libvmkid_lemur.so").exists();
+		} catch (Exception e) {
+			// nothing todo
+		}
 		if ((vmName != null && vmName.toLowerCase().contains("lemur"))
-				|| (version != null && version.trim().length() > 0)) {
+				|| (version != null && version.trim().length() > 0) || yunosLibExists) {
 			return true;
 		} else {
 			return false;
